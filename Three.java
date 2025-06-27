@@ -49,34 +49,8 @@ public class Three {
 
         System.out.println("\nMultiple: " + Integer.parseInt(gamma, 2) * Integer.parseInt(epsilon, 2));
 
-        List<String> onesList = new ArrayList<>();
-        List<String> zerosList = new ArrayList<>();
-        List<String> generatorList = new ArrayList<>();
-        List<String> scrubberList = new ArrayList<>();
-        int i = 0;
-        int j = 0;
-        ones = 0;
-        zeros = 0;
-
-        for (j = 0; j < lines.size(); j++) {
-            if (lines.get(j).charAt(i) == '1') {
-                onesList.add(lines.get(j));
-                ones++;
-            }
-            else {
-                zerosList.add(lines.get(j));
-                zeros++;
-            }
-        }
-
-        if (zeros > ones) {
-            generatorList.addAll(zerosList);
-            scrubberList.addAll(onesList);
-        } else {
-            generatorList.addAll(onesList);
-            scrubberList.addAll(zerosList);
-        }
-
+        List<String> generatorList = new ArrayList<>(lines);
+        List<String> scrubberList = new ArrayList<>(lines);
         System.out.println("\nLife Support Rating: " + Integer.parseInt(reduceList(generatorList, binaryLength, false), 2) * Integer.parseInt(reduceList(scrubberList, binaryLength, true), 2));
     }
 
@@ -85,7 +59,7 @@ public class Three {
         List<String> zerosList = new ArrayList<>();
         int ones = 0;
         int zeros = 0;
-        int i = 1; // Start from the second character for the next calculations
+        int i = 0;
         int j = 0;
         while (list.size() > 1) {
             for (; i < length; i++) {
